@@ -10,6 +10,12 @@ public class Collectable : MonoBehaviour
     [SerializeField]
     private Transform Display = null;
 
+    [SerializeField]
+    private AudioSource CollectAudioSource = null;
+
+    [SerializeField]
+    private UIPoints PointsDisplayPrefab = null;
+
     private static Color[] _colors = new Color[]
     {
             new Color(254 / 255f, 243 / 255f, 192 / 255f),
@@ -44,9 +50,16 @@ public class Collectable : MonoBehaviour
         if (_isCollected)
             return;
 
+        CollectAudioSource.Play();
+
+        var uiPoints = Instantiate(PointsDisplayPrefab, transform.position + Vector3.up * 0.3f, Quaternion.identity);
+        uiPoints.SetPointsText(CollectableData);
+
+        SpriteRenderer.enabled = false;
+
         _isCollected = true;
         ScoreManager.AddPoints(CollectableData.Points);
-        Destroy(gameObject);
+        Destroy(gameObject, 1f);
     }
 
     public void Update()

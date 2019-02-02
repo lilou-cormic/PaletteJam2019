@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,10 +13,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private LayerMask GroundLayer = 0;
 
+    [SerializeField]
+    private AudioSource JumpAudioSource = null;
+
+    [SerializeField]
+    private AudioSource GameOverAudioSource = null;
+
     private bool _isGrounded = false;
     private bool _isJumping = false;
 
-    private float _jumpTime = 0.35f;
+    private float _jumpTime = 0.5f;
     private float _jumpTimer = 0;
 
     // Start is called before the first frame update
@@ -30,9 +37,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < -10)
+        if (transform.position.y < -7)
         {
             rb.simulated = false;
+
+            ScoreManager.SetHighScore();
+
+            SceneManager.LoadScene("GameOver");
         }
 
         if (GameManager.Instance.IsGameOver)
@@ -40,11 +51,11 @@ public class Player : MonoBehaviour
 
         if (transform.position.y < 0.7)
         {
+            GameOverAudioSource.Play();
+
             GameManager.Instance.IsGameOver = true;
             rb.freezeRotation = false;
             rb.angularVelocity = -100f;
-
-            Debug.Log("Score: " + ScoreManager.Score + ", Best: " + ScoreManager.HighScore);
 
             return;
         }
@@ -53,10 +64,13 @@ public class Player : MonoBehaviour
 
         if (_isGrounded)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            //if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetButtonDown("Fire1"))
             {
+                JumpAudioSource.Play();
+
                 //rb.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
-                rb.velocity = new Vector2(rb.velocity.x, 3);
+                rb.velocity = new Vector2(rb.velocity.x, 2);
                 _isJumping = true;
                 _jumpTimer = _jumpTime;
             }
@@ -66,11 +80,12 @@ public class Player : MonoBehaviour
 
         if (_isJumping)
         {
-            if (Input.GetKey(KeyCode.Space))
+            //if (Input.GetKey(KeyCode.Space))
+            if (Input.GetButton("Fire1"))
             {
                 if (_jumpTimer > 0)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x, 4);
+                    rb.velocity = new Vector2(rb.velocity.x, (_jumpTimer > _jumpTime - 0.1 ? 2 : 4));
                     _jumpTimer -= Time.deltaTime;
                 }
                 else
@@ -81,7 +96,8 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        //if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetButtonUp("Fire1"))
             _isJumping = false;
     }
 

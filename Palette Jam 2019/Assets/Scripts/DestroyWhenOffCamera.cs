@@ -13,7 +13,7 @@ public class DestroyWhenOffCamera : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (transform.position.x < _camera.transform.position.x - _camera.orthographicSize * _camera.aspect)
+        if (transform.position.x < _camera.transform.position.x - _camera.orthographicSize * _camera.aspect - 5)
             Destroy(gameObject);
     }
 }

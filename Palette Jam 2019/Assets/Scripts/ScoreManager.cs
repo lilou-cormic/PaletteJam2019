@@ -10,6 +10,11 @@ public class ScoreManager : MonoBehaviour
 
     public static event Action ScoreChanged;
 
+    private void Awake()
+    {
+        HighScore = PlayerPrefs.GetInt("HighScore", 0);
+    }
+
     private void Start()
     {
         Score = 0;
@@ -19,8 +24,17 @@ public class ScoreManager : MonoBehaviour
     {
         Score += points;
 
+        ScoreChanged?.Invoke();
+    }
+
+    public static void SetHighScore()
+    {
         if (Score > HighScore)
+        {
             HighScore = Score;
+
+            PlayerPrefs.SetInt("HighScore", HighScore);
+        }
 
         ScoreChanged?.Invoke();
     }
