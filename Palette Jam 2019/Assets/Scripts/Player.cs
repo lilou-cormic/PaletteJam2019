@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     private AudioSource JumpAudioSource = null;
 
     [SerializeField]
+    private AudioSource LandAudioSource = null;
+
+    [SerializeField]
     private AudioSource GameOverAudioSource = null;
 
     private bool _isGrounded = false;
@@ -25,8 +28,7 @@ public class Player : MonoBehaviour
     private float _jumpTime = 0.5f;
     private float _jumpTimer = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         GameManager.Instance.IsGameOver = false;
@@ -34,9 +36,11 @@ public class Player : MonoBehaviour
         _isJumping = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        if (GameManager.Instance.IsPaused)
+            return;
+
         if (transform.position.y < -7)
         {
             rb.simulated = false;
@@ -60,10 +64,15 @@ public class Player : MonoBehaviour
             return;
         }
 
-        _isGrounded = Physics2D.OverlapCircle(GroundChecker.position, 0.2f, GroundLayer);
+        bool wasGrounded = _isGrounded;
+
+        _isGrounded = Physics2D.OverlapCircle(GroundChecker.position, 0.2f, GroundLayer) || rb.velocity == Vector2.zero;
 
         if (_isGrounded)
         {
+            if (!wasGrounded && rb.velocity.y < 0)
+                LandAudioSource.Play();
+
             //if (Input.GetKeyDown(KeyCode.Space))
             if (Input.GetButtonDown("Fire1"))
             {

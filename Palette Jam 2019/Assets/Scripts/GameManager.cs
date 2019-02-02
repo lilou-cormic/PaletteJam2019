@@ -11,9 +11,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Collectable CollectablePrefab = null;
 
+    [SerializeField]
+    private GameObject PauseMenu = null;
+
     public static GameManager Instance { get; private set; }
 
-    public bool IsGameOver { get; set; }
+    public bool IsGameOver { get; set; } = false;
+
+    public bool IsPaused { get; set; } = false;
 
     private Camera _camera;
 
@@ -35,12 +40,34 @@ public class GameManager : MonoBehaviour
         _camera = Camera.main;
 
         InstantiateMap();
+
+        IsGameOver = false;
+
+        UnPause();
     }
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+        if (!IsPaused)
+        {
+            //if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetButtonDown("Pause"))
+            {
+                Time.timeScale = 0;
+                IsPaused = true;
+                PauseMenu.SetActive(true);
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+        }
+    }
+
+    public void UnPause()
+    {
+        PauseMenu.SetActive(false);
+        IsPaused = false;
+        Time.timeScale = 1;
     }
 
     public void FixedUpdate()
