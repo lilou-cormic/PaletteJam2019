@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
 
         if (_isGrounded)
         {
-            if (!wasGrounded && rb.velocity.y < 0)
+            if (!wasGrounded && rb.velocity.y <= 0.1f)
                 LandAudioSource.Play();
 
             //if (Input.GetKeyDown(KeyCode.Space))

@@ -9,7 +9,7 @@ EdgeCollider2D:
   m_GameObject: {fileID: 2857143464992066754}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 72dc7cb1b6ddf3a46b3affafb93c4588, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
@@ -109,6 +109,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2396544521408833524, guid: fa660130d50465f47bfd0cc4ce84c5c0,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a9df380a941893e4ca0f1dcc4ab5ed7d,
+        type: 3}
     - target: {fileID: 2134619884461004672, guid: fa660130d50465f47bfd0cc4ce84c5c0,
         type: 3}
       propertyPath: m_Enabled
