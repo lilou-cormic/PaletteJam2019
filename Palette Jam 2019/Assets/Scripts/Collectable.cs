@@ -69,4 +69,9 @@ public class Collectable : MonoBehaviour
         Display.localScale = new Vector3(Mathf.Lerp(0.5f, 0.4f, t), Display.localScale.y, Display.localScale.z);
         Display.localPosition = new Vector3(Display.localPosition.x, Mathf.Lerp(0f, 0.1f, t), Display.localPosition.z);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Collect();
+    }
 }

@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     private GameObject SecondLevelPrefab = null;
 
     [SerializeField]
+    private GameObject RocksPrefab = null;
+
+    [SerializeField]
     private Collectable CollectablePrefab = null;
 
     [SerializeField]
@@ -51,7 +54,7 @@ public class GameManager : MonoBehaviour
         if (!IsPaused)
         {
             //if (Input.GetKeyDown(KeyCode.Escape))
-            if (Input.GetButtonDown("Pause"))
+            if (Input.GetButtonDown("Pause") || Input.GetButtonDown("Fire2"))
             {
                 Time.timeScale = 0;
                 IsPaused = true;
@@ -89,9 +92,17 @@ public class GameManager : MonoBehaviour
         {
             var slice = mapPortion.Slices[i];
 
-            if (!slice.IsHole)
+            if (slice.IsHole)
             {
-                var floor = Instantiate(FloorPrefab, new Vector3(_currentSliceLocation, 0, 0), Quaternion.identity, transform);
+                if (Random.Range(0f, 1f) > 0.85f)
+                {
+                    Instantiate(FloorPrefab, new Vector3(_currentSliceLocation, 0, 0), Quaternion.identity, transform);
+                    Instantiate(RocksPrefab, new Vector3(_currentSliceLocation, 1, 0), Quaternion.identity, transform);
+                }
+            }
+            else
+            {
+                Instantiate(FloorPrefab, new Vector3(_currentSliceLocation, 0, 0), Quaternion.identity, transform);
             }
 
             if (!slice.FloorCollectable.IsNone())
@@ -103,7 +114,7 @@ public class GameManager : MonoBehaviour
 
             if (slice.HasSecondLevel)
             {
-                var floor = Instantiate(SecondLevelPrefab, new Vector3(_currentSliceLocation, 2, 0), Quaternion.identity, transform);
+                Instantiate(SecondLevelPrefab, new Vector3(_currentSliceLocation, 2, 0), Quaternion.identity, transform);
             }
 
             if (!slice.SecondLevelCollectable.IsNone())

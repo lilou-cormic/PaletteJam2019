@@ -20,11 +20,11 @@ public static class MapGenerator
             hasSecondLevelCollectable = (hasSecondLevel ? Random.Range(0f, 1f) > (hasSecondLevelCollectable ? 0.5f : 0.7f) : Random.Range(0f, 1f) > (!hasSecondLevelCollectable ? 0.6f : 0.8f));
             isHole = (hasSecondLevel ? Random.Range(0f, 1f) > 0.6f : !isHole && Random.Range(0f, 1f) > 0.8f);
 
-            if (hasFloorCollectable && isHole)
-            {
-                hasFloorCollectable = false;
-                hasSecondLevelCollectable = true;
-            }
+            //if (hasFloorCollectable && isHole)
+            //{
+            //    hasFloorCollectable = false;
+            //    hasSecondLevelCollectable = true;
+            //}
 
             slices[i] = new MapSliceData(isHole, (hasFloorCollectable ? CollectableData.GetRandomCollectable() : CollectableData.None), hasSecondLevel, (hasSecondLevelCollectable ? CollectableData.GetRandomCollectable() : CollectableData.None));
         }

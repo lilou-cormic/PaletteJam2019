@@ -36,6 +36,7 @@ public class MusicPlayer : MonoBehaviour
         {
             case "Menu":
             case "Credits":
+            case "Controls":
                 GameMusicAudioSource.Stop();
 
                 if (!MenuMusicAudioSource.isPlaying)

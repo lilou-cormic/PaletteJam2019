@@ -43,11 +43,7 @@ public class Player : MonoBehaviour
 
         if (transform.position.y < -7)
         {
-            rb.simulated = false;
-
-            ScoreManager.SetHighScore();
-
-            SceneManager.LoadScene("GameOver");
+            ShowGameOverScreen();
         }
 
         if (GameManager.Instance.IsGameOver)
@@ -57,16 +53,14 @@ public class Player : MonoBehaviour
         {
             GameOverAudioSource.Play();
 
-            GameManager.Instance.IsGameOver = true;
-            rb.freezeRotation = false;
-            rb.angularVelocity = -100f;
+            GameOver();
 
             return;
         }
 
         bool wasGrounded = _isGrounded;
 
-        _isGrounded = Physics2D.OverlapCircle(GroundChecker.position, 0.2f, GroundLayer) || rb.velocity == Vector2.zero;
+        _isGrounded = Physics2D.OverlapCircle(GroundChecker.position, 0.15f, GroundLayer) || rb.velocity == Vector2.zero;
 
         if (_isGrounded)
         {
@@ -74,7 +68,7 @@ public class Player : MonoBehaviour
                 LandAudioSource.Play();
 
             //if (Input.GetKeyDown(KeyCode.Space))
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Jump"))
             {
                 JumpAudioSource.Play();
 
@@ -90,7 +84,7 @@ public class Player : MonoBehaviour
         if (_isJumping)
         {
             //if (Input.GetKey(KeyCode.Space))
-            if (Input.GetButton("Fire1"))
+            if (Input.GetButton("Fire1") || Input.GetButton("Jump"))
             {
                 if (_jumpTimer > 0)
                 {
@@ -106,12 +100,23 @@ public class Player : MonoBehaviour
         }
 
         //if (Input.GetKeyUp(KeyCode.Space))
-        if (Input.GetButtonUp("Fire1"))
+        if (Input.GetButtonUp("Fire1") || Input.GetButtonUp("Jump"))
             _isJumping = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void ShowGameOverScreen()
     {
-        collision.GetComponent<Collectable>()?.Collect();
+        rb.simulated = false;
+
+        ScoreManager.SetHighScore();
+
+        SceneManager.LoadScene("GameOver");
+    }
+
+    public void GameOver()
+    {
+        GameManager.Instance.IsGameOver = true;
+        rb.freezeRotation = false;
+        rb.angularVelocity = -100f;
     }
 }

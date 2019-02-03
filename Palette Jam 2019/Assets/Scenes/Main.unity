@@ -716,7 +716,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0013008269, y: -0.3745253}
-  m_Size: {x: 0.72691315, y: 0.25095168}
+  m_Size: {x: 0.65932435, y: 0.2393854}
   m_Direction: 1
 --- !u!1 &1363511497
 GameObject:
@@ -817,6 +817,8 @@ MonoBehaviour:
   FloorPrefab: {fileID: 1217667638308999542, guid: fa660130d50465f47bfd0cc4ce84c5c0,
     type: 3}
   SecondLevelPrefab: {fileID: 2857143464992066754, guid: 542dfb2686544eb48872abfe259fef3b,
+    type: 3}
+  RocksPrefab: {fileID: 855074831774019375, guid: 3d3ca7165f9c8dd4c97b0ad614958d36,
     type: 3}
   CollectablePrefab: {fileID: 5076753725129186073, guid: 5e9cd4b1b7146df41b81c2c6c50462d4,
     type: 3}
@@ -1037,7 +1039,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754787669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 1, z: 0}
+  m_LocalPosition: {x: -2, y: 1.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1203244835}

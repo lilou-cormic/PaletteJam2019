@@ -9,7 +9,7 @@ public class PauseMenu : MonoBehaviour
         if (GameManager.Instance.IsPaused)
         {
             //if (Input.GetKeyDown(KeyCode.Escape))
-            if (Input.GetButtonDown("Pause"))
+            if (Input.GetButtonDown("Pause") || Input.GetButtonDown("Fire2"))
                 GameManager.Instance.UnPause();
         }
     }
