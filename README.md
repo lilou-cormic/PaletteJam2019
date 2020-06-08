@@ -1,10 +1,10 @@
 ### PaletteJam2019
 
-# Mine Rush
+# Mine Rush (Jam version)
 
 ![](Palette%20Jam%202019/Cover.png)
 
-https://lilou-cormic.itch.io/mine-rush
+https://lilou-cormic.itch.io/mine-rush-jam-version
 
 Game created by lilou_cormic for [8 Bits to Infinity ~ Platformer Week (Feb. 2019)](https://itch.io/jam/palette-jam)
 
