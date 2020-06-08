@@ -6,7 +6,7 @@
 
 https://lilou-cormic.itch.io/mine-rush-jam-version
 
-Game created by lilou_cormic for [8 Bits to Infinity ~ Platformer Week (Feb. 2019)](https://itch.io/jam/palette-jam)
+Game created by lilou_cormic for [8 Bits to Infinity ~ Palette Jam (Feb. 2019)](https://itch.io/jam/palette-jam)
 
 Contains music ©2019 Joshua McLean (www.mrjoshuamclean.com) Licensed under Creative Commons Attribution-ShareAlike 4.0 International
 
