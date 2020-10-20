@@ -8,7 +8,8 @@ https://lilou-cormic.itch.io/mine-rush-jam-version
 
 Game created by lilou_cormic (www.purplecable.ca) for [8 Bits to Infinity ~ Palette Jam (Feb. 2019)](https://itch.io/jam/palette-jam)
 
-Contains music ©2019 Joshua McLean (www.mrjoshuamclean.com) Licensed under Creative Commons Attribution-ShareAlike 4.0 International
+Contains music ©2019 Joshua McLean (www.mrjoshuamclean.com)  
+Licensed under Creative Commons Attribution-ShareAlike 4.0 International
 
 Tools Used
 - Unity 2018.3.4f
